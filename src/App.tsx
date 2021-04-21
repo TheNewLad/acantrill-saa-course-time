@@ -1,24 +1,14 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import sections from './sections';
+import Section from './Section';
+import { calculateTimeLeftInCourse } from './calculateTimeLeft';
+import moment from 'moment';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {sections.map((section, index) => <Section key={index} section={section} />)}
+      <p>{moment.duration(calculateTimeLeftInCourse(sections), 'seconds').humanize()} left in course</p>
     </div>
   );
 }
