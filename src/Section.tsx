@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faCheck, faTimes} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { calculateTimeLeftInSection } from './calculateTimeLeft';
 import { Section as SectionType } from './sections';
 
@@ -10,6 +10,12 @@ interface SectionProps {
 }
 
 const Section = ({ section }: SectionProps) => {
+    const getTimeLeftInSection = () => {
+        const timeLeft = calculateTimeLeftInSection(section);
+        return (
+            timeLeft ? `${moment.duration(timeLeft, 'seconds').humanize()} left in section` : 'Section Complete'
+        );
+    }
     return (
         <div className="card">
             <header className="card-header">
@@ -19,12 +25,12 @@ const Section = ({ section }: SectionProps) => {
                 <ul>
                     {section.lectures.map((lecture, index) => {
                         return (
-                            <li key={index}><span className="icon"><FontAwesomeIcon icon={lecture.done ? faCheck : faTimes}/></span> {lecture.name}</li>
+                            <li key={index}><span className="icon"><FontAwesomeIcon icon={lecture.done ? faCheck : faTimes} /></span> {lecture.name}</li>
                         )
                     })}
                 </ul>
-                <br/>
-                <p className="">{moment.duration(calculateTimeLeftInSection(section), 'seconds').humanize()} left in section</p>
+                <br />
+                <p className="">{getTimeLeftInSection()}</p>
             </div>
         </div>
     );
