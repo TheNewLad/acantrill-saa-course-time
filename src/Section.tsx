@@ -1,8 +1,7 @@
 import React from 'react';
-import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
-import { calculateTimeLeftInSection } from './timer';
+import { calculateTimeLeftInSection, getHumanTimeLeft } from './timer';
 import { Section as SectionType } from './sections';
 
 interface SectionProps {
@@ -10,18 +9,13 @@ interface SectionProps {
 }
 
 const Section = ({ section }: SectionProps) => {
-    const getTimeLeftInSection = () => {
-        const timeLeft = calculateTimeLeftInSection(section);
-        return (
-            timeLeft ? `${moment.duration(timeLeft, 'seconds').humanize()} left in section` : 'Section Complete'
-        );
-    }
+    const timeLeft = calculateTimeLeftInSection(section);
     return (
         <div className="card">
             <header className="card-header">
                 <h1 className="card-header-title">{section.title}</h1>
             </header>
-            <div className="card-content">
+            {timeLeft ? <div className="card-content">
                 <ul>
                     {section.lectures.map((lecture, index) => {
                         return (
@@ -30,8 +24,8 @@ const Section = ({ section }: SectionProps) => {
                     })}
                 </ul>
                 <br />
-                <p className="">{getTimeLeftInSection()}</p>
-            </div>
+                <p className="">{`${getHumanTimeLeft(timeLeft)} left in section`}</p>
+            </div> : null}
         </div>
     );
 };

@@ -2,8 +2,7 @@ import React from 'react';
 import 'bulma/css/bulma.css';
 import sections from './sections';
 import Section from './Section';
-import { calculateTimeLeftInCourse } from './timer';
-import moment from 'moment';
+import { calculateTimeLeftInCourse, getHumanTimeLeft } from './timer';
 
 function App() {
   return (
@@ -11,7 +10,7 @@ function App() {
       {sections.map((section, index) => <Section key={index} section={section} />)}
       <div className="card">
             <header className="card-header">
-                <p className="card-header-title">{moment.duration(calculateTimeLeftInCourse(sections), 'seconds').humanize()} left in course</p>
+                <p className="card-header-title">{getHumanTimeLeft(calculateTimeLeftInCourse(sections))} left in course</p>
             </header>
             </div>
     </div>
