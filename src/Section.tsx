@@ -1,7 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
-import { calculateTimeLeftInSection, getHumanTimeLeft } from './timer';
+import { calculateTimeLeftInSection, getHumanTimeLeft } from './time';
 import { Section as SectionType } from './sections';
 
 interface SectionProps {

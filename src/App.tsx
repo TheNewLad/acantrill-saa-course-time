@@ -2,7 +2,7 @@ import React from 'react';
 import 'bulma/css/bulma.css';
 import sections from './sections';
 import Section from './Section';
-import { calculateTimeLeftInCourse, getHumanTimeLeft } from './timer';
+import { calculateTimeLeftInCourse, getHumanTimeLeft } from './time';
 
 function App() {
   return (
