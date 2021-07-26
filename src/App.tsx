@@ -1,6 +1,6 @@
 import React from 'react';
 import 'bulma/css/bulma.css';
-import sections from './sections';
+import sections from './course-webpage-parser/course.json';
 import Section from './Section';
 import { calculateTimeLeftInCourse, getHumanTimeLeft } from './time';
 
